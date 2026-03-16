@@ -1,0 +1,11 @@
+# Ignore executable files
+*.exe
+
+# Ignore VS Code configuration and build folders
+.vscode/
+bin/
+obj/
+
+# Ignore C++ pointer/debug files (if any)
+*.o
+*.out
