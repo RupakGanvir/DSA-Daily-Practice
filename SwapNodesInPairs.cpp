@@ -1,5 +1,5 @@
 #include <iostream>
-
+using namespace std;
 struct ListNode
 {
     int val;
@@ -43,23 +43,23 @@ void printList(ListNode *head)
 {
     while (head)
     {
-        std::cout << head->val << (head->next ? " -> " : "");
+        cout << head->val << (head->next ? " -> " : "");
         head = head->next;
     }
-    std::cout << std::endl;
+    cout << endl;
 }
 
 int main()
 {
     ListNode *head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4))));
 
-    std::cout << "Original List: ";
+    cout << "Original List: ";
     printList(head);
 
     Solution sol;
     head = sol.swapPairs(head);
 
-    std::cout << "Swapped List:  ";
+    cout << "Swapped List:  ";
     printList(head);
 
     return 0;
