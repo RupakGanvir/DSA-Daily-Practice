@@ -22,7 +22,7 @@ int main()
 {
     Solution solver;
 
-    int h1 = 12, m1 = 30;
+    int h1 = 12, m1 = 20;
     int h2 = 3, m2 = 30;
     int h3 = 3, m3 = 15;
 

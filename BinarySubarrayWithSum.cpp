@@ -51,8 +51,8 @@ int main()
     int goal2 = 0;
 
     cout << "--- Binary Subarrays With Sum Tests ---" << endl;
-    cout << "Test 1: " << solver.numSubarraysWithSum(nums1, goal1) << endl;
-    cout << "Test 2: " << solver.numSubarraysWithSum(nums2, goal2) << endl;
+    cout << "Test - 1: " << solver.numSubarraysWithSum(nums1, goal1) << endl;
+    cout << "Test - 2: " << solver.numSubarraysWithSum(nums2, goal2) << endl;
 
     return 0;
 }
