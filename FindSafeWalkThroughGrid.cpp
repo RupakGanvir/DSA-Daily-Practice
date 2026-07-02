@@ -1,66 +1,84 @@
 #include <iostream>
 #include <vector>
-#include <queue>
+#include <deque>
 
 using namespace std;
 
 class Solution
 {
 public:
-    bool canFinish(int numCourses, vector<vector<int>> &prerequisites)
+    bool findSafeWalk(vector<vector<int>> &grid, int health)
     {
-        vector<vector<int>> adj(numCourses);
-        vector<int> inDegree(numCourses, 0);
+        int m = grid.size();
+        int n = grid[0].size();
 
-        for (const auto &pre : prerequisites)
-        {
-            adj[pre[1]].push_back(pre[0]);
-            inDegree[pre[0]]++;
-        }
+        vector<vector<int>> dist(m, vector<int>(n, 1e9));
+        deque<pair<int, int>> dq;
 
-        queue<int> q;
-        for (int i = 0; i < numCourses; ++i)
+        dist[0][0] = grid[0][0];
+        dq.push_back({0, 0});
+
+        int dr[] = {-1, 1, 0, 0};
+        int dc[] = {0, 0, -1, 1};
+
+        while (!dq.empty())
         {
-            if (inDegree[i] == 0)
+            pair<int, int> curr = dq.front();
+            int r = curr.first;
+            int c = curr.second;
+            dq.pop_front();
+
+            if (r == m - 1 && c == n - 1)
             {
-                q.push(i);
+                return dist[r][c] < health;
             }
-        }
 
-        int completed = 0;
-        while (!q.empty())
-        {
-            int curr = q.front();
-            q.pop();
-            completed++;
-
-            for (int next : adj[curr])
+            for (int i = 0; i < 4; ++i)
             {
-                inDegree[next]--;
-                if (inDegree[next] == 0)
+                int nr = r + dr[i];
+                int nc = c + dc[i];
+
+                if (nr >= 0 && nr < m && nc >= 0 && nc < n)
                 {
-                    q.push(next);
+                    int cost = grid[nr][nc];
+                    if (dist[r][c] + cost < dist[nr][nc])
+                    {
+                        dist[nr][nc] = dist[r][c] + cost;
+                        if (cost == 0)
+                        {
+                            dq.push_front({nr, nc});
+                        }
+                        else
+                        {
+                            dq.push_back({nr, nc});
+                        }
+                    }
                 }
             }
         }
-
-        return completed == numCourses;
+        return false;
     }
 };
 
 int main()
 {
-    Solution solver;
-    int numCourses = 2;
-    vector<vector<int>> prerequisites = {{1, 0}};
+    Solution sol;
 
-    if (solver.canFinish(numCourses, prerequisites))
+    vector<vector<int>> grid = {
+        {0, 1, 0, 0, 0},
+        {0, 1, 0, 1, 0},
+        {0, 0, 0, 1, 0}};
+    int health = 1;
+
+    bool result = sol.findSafeWalk(grid, health);
+
+    if (result)
     {
-        cout << "Course schedule is possible." << endl;
+        cout << "true\n";
     }
     else
     {
-        cout << "Course schedule is not possible." << endl;
+        cout << "false\n";
     }
 
     return 0;
