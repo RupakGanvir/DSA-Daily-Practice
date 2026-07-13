@@ -13,7 +13,6 @@ public:
         int m = str1.length();
         int n = str2.length();
 
-        // dp[i][j] will store the length of the Longest Common Subsequence (LCS)
         vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
 
         for (int i = 1; i <= m; ++i)
@@ -34,7 +33,6 @@ public:
         string result = "";
         int i = m, j = n;
 
-        // Backtrack to find the shortest common supersequence
         while (i > 0 && j > 0)
         {
             if (str1[i - 1] == str2[j - 1])
@@ -55,14 +53,12 @@ public:
             }
         }
 
-        // Add remaining characters from str1
         while (i > 0)
         {
             result += str1[i - 1];
             i--;
         }
 
-        // Add remaining characters from str2
         while (j > 0)
         {
             result += str2[j - 1];
