@@ -26,7 +26,6 @@ public:
                 bool hasTrue = false;
                 bool hasFalse = false;
 
-                // Pop all the boolean values inside the current parentheses
                 while (st.back() != '(')
                 {
                     char val = st.back();
@@ -37,14 +36,11 @@ public:
                         hasFalse = true;
                 }
 
-                // Pop the '('
                 st.pop_back();
 
-                // Pop the operator before the '('
                 char op = st.back();
                 st.pop_back();
 
-                // Evaluate the expression based on the operator
                 char res;
                 if (op == '!')
                 {
@@ -55,11 +51,10 @@ public:
                     res = hasFalse ? 'f' : 't';
                 }
                 else
-                { // op == '|'
+                {
                     res = hasTrue ? 't' : 'f';
                 }
 
-                // Push the evaluated result back onto the stack
                 st.push_back(res);
             }
         }
@@ -70,11 +65,9 @@ public:
 
 int main()
 {
-    // Fast I/O
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    // Print booleans as true/false instead of 1/0
     cout << boolalpha;
 
     Solution solver;
