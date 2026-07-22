@@ -11,8 +11,9 @@ public:
     int maxActiveSectionsAfterTrade(string s)
     {
         int n = s.length();
-        int ans = 0, mx = 0, pre = 0;
+        int ans = 0, mx = 0, pre = -1;
         int i = 0;
+
         while (i < n)
         {
             int j = i;
@@ -27,11 +28,15 @@ public:
             }
             else
             {
-                mx = max(mx, pre + cur);
+                if (pre != -1)
+                {
+                    mx = max(mx, pre + cur);
+                }
                 pre = cur;
             }
             i = j;
         }
+
         return ans + mx;
     }
 };
@@ -40,23 +45,14 @@ int main()
 {
     Solution sol;
 
-    string s1 = "0100";
-    cout << sol.maxActiveSectionsAfterTrade(s1) << "\n";
-
-    string s2 = "1000100";
-    cout << sol.maxActiveSectionsAfterTrade(s2) << "\n";
-
-    string s3 = "01010";
-    cout << sol.maxActiveSectionsAfterTrade(s3) << "\n";
-
-    string s4 = "111";
-    cout << sol.maxActiveSectionsAfterTrade(s4) << "\n";
-
-    string s5 = "000";
-    cout << sol.maxActiveSectionsAfterTrade(s5) << "\n";
-
-    string s6 = "001110000111";
-    cout << sol.maxActiveSectionsAfterTrade(s6) << "\n";
+    cout << sol.maxActiveSectionsAfterTrade("01") << "\n";
+    cout << sol.maxActiveSectionsAfterTrade("0100") << "\n";
+    cout << sol.maxActiveSectionsAfterTrade("1000100") << "\n";
+    cout << sol.maxActiveSectionsAfterTrade("01010") << "\n";
+    cout << sol.maxActiveSectionsAfterTrade("000") << "\n";
+    cout << sol.maxActiveSectionsAfterTrade("111") << "\n";
+    cout << sol.maxActiveSectionsAfterTrade("101") << "\n";
+    cout << sol.maxActiveSectionsAfterTrade("001110000111") << "\n";
 
     return 0;
 }
