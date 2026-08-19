@@ -6,7 +6,6 @@ using namespace std;
 class Solution
 {
 private:
-    // Custom GCD implementation
     int gcd(int a, int b)
     {
         while (b != 0)
