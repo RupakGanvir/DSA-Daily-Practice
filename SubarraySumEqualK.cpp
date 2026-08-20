@@ -10,7 +10,6 @@ public:
     int subarraySum(vector<int> &nums, int k)
     {
         unordered_map<int, int> prefix_counts;
-        // Base case: one way to have a sum of 0 (an empty subarray before index 0)
         prefix_counts[0] = 1;
 
         int current_sum = 0;
